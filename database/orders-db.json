@@ -7,9 +7,9 @@
       "purchase_price_inr": 499,
       "order_status": "DELIVERED",
       "timeline": {
-        "ordered_at": "2026-06-01T09:15:00Z",
-        "delivered_at": "2026-06-05T14:30:00Z",
-        "return_window_ends_at": "2026-07-05T23:59:59Z"
+        "ordered_at": "2026-02-01T09:15:00Z",
+        "delivered_at": "2026-02-05T14:30:00Z",
+        "return_window_ends_at": "2026-03-05T23:59:59Z"
       },
       "shipping_details": {
         "delivery_pincode": "400001",

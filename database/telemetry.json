@@ -1,0 +1,564 @@
+[
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": true,
+        "confidence_score": 0.95,
+        "mismatch_flags": []
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": true,
+        "issues": [
+          {
+            "type": "scratches",
+            "severity": "Low",
+            "location": "Front casing",
+            "description": "Minor surface scratches visible on the front casing."
+          }
+        ]
+      },
+      "reasoning": "The item matches the catalog. Structural integrity is intact. Minor cosmetic scratches detected on the front casing, making it eligible for a partial refund or cosmetic cashback.",
+      "suggested_action": "Cosmetic Cashback"
+    },
+    "routing": {
+      "state_id": "ST-CASHBACK",
+      "action": "INSTANT_CASHBACK",
+      "cashback_amount": 599.9,
+      "severity": "Low"
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": true
+      },
+      "variant_verification": {
+        "expected_color": "Silver/Black",
+        "detected_color": "Silver",
+        "color_match": true
+      },
+      "branding": {
+        "brand_logo_visible": true
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": true,
+        "analysis": "The customer mentioned cosmetic damage, and there are visible scratches on the metal casing of the microwave."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": true,
+        "issues": [
+          {
+            "area": "metal casing",
+            "issue": "scratches",
+            "severity": "Low"
+          }
+        ]
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": false
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": []
+      }
+    },
+    "routing": {
+      "state_id": "ST-CASHBACK",
+      "action": "INSTANT_CASHBACK",
+      "cashback_amount": 599.9,
+      "severity": "Low"
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": true
+      },
+      "variant_verification": {
+        "expected_color": "Silver/Black",
+        "detected_color": "Silver/Black",
+        "color_match": true
+      },
+      "branding": {
+        "brand_logo_visible": true
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": true,
+        "analysis": "The visual evidence shows minor scratches on the casing, which supports the customer's claim of cosmetic damage."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": true,
+        "issues": [
+          {
+            "area": "Casing",
+            "issue": "Minor scratches",
+            "severity": "Low"
+          }
+        ]
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": true
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": []
+      }
+    },
+    "routing": {
+      "state_id": "ST-CASHBACK",
+      "action": "INSTANT_CASHBACK",
+      "cashback_amount": 599.9,
+      "severity": "Low"
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": false
+      },
+      "variant_verification": {
+        "expected_color": "test",
+        "detected_color": "",
+        "color_match": false
+      },
+      "branding": {
+        "brand_logo_visible": false
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": false,
+        "analysis": "The image does not provide sufficient information to verify the customer's claim of the product being defective or broken."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": false,
+        "issues": []
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": false
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": [
+          "The image is completely black with no visible details or information about the product."
+        ]
+      }
+    },
+    "routing": {
+      "state_id": "ST-MISMATCH",
+      "action": "ITEM_MISMATCH",
+      "cashback_amount": 0.0,
+      "severity": null
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": false
+      },
+      "variant_verification": {
+        "expected_color": "Blue",
+        "detected_color": "Black",
+        "color_match": false
+      },
+      "branding": {
+        "brand_logo_visible": true
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": false,
+        "analysis": "No visible fabric defect or hole as per the customer's reported reason."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": false,
+        "issues": []
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": true
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": []
+      }
+    },
+    "routing": {
+      "state_id": "ST-MISMATCH",
+      "action": "ITEM_MISMATCH",
+      "cashback_amount": 0.0,
+      "severity": null
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": true
+      },
+      "variant_verification": {
+        "expected_color": "Blue",
+        "detected_color": "Black",
+        "color_match": false
+      },
+      "branding": {
+        "brand_logo_visible": true
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": false,
+        "analysis": "The shoes do not appear stained, damaged, worn, or used based on the image."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": false,
+        "issues": []
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": true
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": []
+      }
+    },
+    "routing": {
+      "state_id": "ST-STANDARD",
+      "action": "STANDARD_RETURN",
+      "cashback_amount": 0.0,
+      "severity": null
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": false
+      },
+      "variant_verification": {
+        "expected_color": "Silver/Black",
+        "detected_color": "White/Blue",
+        "color_match": false
+      },
+      "branding": {
+        "brand_logo_visible": false
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": false,
+        "analysis": "The image shows a pair of sneakers, not a microwave, hence the claim of cosmetic damage cannot be verified."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": false,
+        "issues": []
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": false
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": true
+      },
+      "overall_observations": {
+        "uncertainty_notes": [
+          "The image does not depict the expected product (WaveMaster 900W Countertop Microwave), but rather a pair of sneakers."
+        ]
+      }
+    },
+    "routing": {
+      "state_id": "ST-MISMATCH",
+      "action": "ITEM_MISMATCH",
+      "cashback_amount": 0.0,
+      "severity": null
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": true
+      },
+      "variant_verification": {
+        "expected_color": "Silver/Black",
+        "detected_color": "Silver/Black",
+        "color_match": true
+      },
+      "branding": {
+        "brand_logo_visible": true
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": true,
+        "analysis": "The microwave shows scratches on the casing as reported by the customer."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": true,
+        "issues": [
+          {
+            "area": "Casing",
+            "issue": "Scratches",
+            "severity": "Medium"
+          }
+        ]
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": true
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": []
+      }
+    },
+    "routing": {
+      "state_id": "ST-CASHBACK",
+      "action": "INSTANT_CASHBACK",
+      "cashback_amount": 1199.8,
+      "severity": "Medium"
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": true
+      },
+      "variant_verification": {
+        "expected_color": "Silver/Black",
+        "detected_color": "Silver/Black",
+        "color_match": true
+      },
+      "branding": {
+        "brand_logo_visible": true
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": true,
+        "analysis": "The microwave shows visible scratches on the casing, consistent with the customer's report of cosmetic damage."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": true,
+        "issues": [
+          {
+            "area": "Casing",
+            "issue": "Scratches",
+            "severity": "Medium"
+          }
+        ]
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": true
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": []
+      }
+    },
+    "routing": {
+      "state_id": "ST-CASHBACK",
+      "action": "INSTANT_CASHBACK",
+      "cashback_amount": 1199.8,
+      "severity": "Medium",
+      "calculation": {
+        "item_price": 5999.0,
+        "multiplier_applied": 0.2
+      },
+      "justification": "Rufus determined this item is eligible for this return path."
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": false
+      },
+      "variant_verification": {
+        "expected_color": "Silver/Black",
+        "detected_color": "Blue",
+        "color_match": false
+      },
+      "branding": {
+        "brand_logo_visible": false
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": false,
+        "analysis": "The image shows a blue hoodie, not a microwave, so the claim of a damaged microwave cannot be verified."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": false,
+        "issues": []
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": false
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": true
+      },
+      "overall_observations": {
+        "uncertainty_notes": [
+          "The image does not depict the expected product (WaveMaster 900W Countertop Microwave)."
+        ]
+      }
+    },
+    "routing": {
+      "state_id": "ST-MISMATCH",
+      "action": "ITEM_MISMATCH",
+      "cashback_amount": 0.0,
+      "severity": null,
+      "calculation": {
+        "item_price": 5999.0,
+        "multiplier_applied": 0.0
+      },
+      "justification": "Rufus determined this item is eligible for this return path."
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": true
+      },
+      "variant_verification": {
+        "expected_color": "Silver/Black",
+        "detected_color": "Silver/Black",
+        "color_match": true
+      },
+      "branding": {
+        "brand_logo_visible": true
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": true,
+        "analysis": "The power cord is visibly missing from the microwave, supporting the customer's claim."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": true,
+        "issues": [
+          {
+            "area": "Front panel",
+            "issue": "Minor fingerprints",
+            "severity": "Low"
+          }
+        ]
+      },
+      "structural_inspection": {
+        "structural_damage_detected": true,
+        "issues": [
+          {
+            "area": "Power cord",
+            "issue": "Missing",
+            "severity": "High"
+          }
+        ]
+      },
+      "packaging_inspection": {
+        "packaging_intact": false
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": []
+      }
+    },
+    "routing": {
+      "state_id": "ST-STANDARD",
+      "action": "STANDARD_RETURN",
+      "cashback_amount": 0.0,
+      "severity": null,
+      "calculation": {
+        "item_price": 5999.0,
+        "multiplier_applied": 0.0
+      },
+      "justification": "Rufus determined this item is eligible for this return path."
+    }
+  },
+  {
+    "analysis": {
+      "product_identification": {
+        "appears_correct_product": true
+      },
+      "variant_verification": {
+        "expected_color": "Silver/Black",
+        "detected_color": "Silver/Black",
+        "color_match": true
+      },
+      "branding": {
+        "brand_logo_visible": true
+      },
+      "customer_claim_verification": {
+        "claim_visually_supported": true,
+        "analysis": "The casing shows minor scratches, consistent with the customer's report."
+      },
+      "cosmetic_inspection": {
+        "cosmetic_damage_detected": true,
+        "issues": [
+          {
+            "area": "Casing",
+            "issue": "Minor scratches",
+            "severity": "Low"
+          }
+        ]
+      },
+      "structural_inspection": {
+        "structural_damage_detected": false,
+        "issues": []
+      },
+      "packaging_inspection": {
+        "packaging_intact": true
+      },
+      "fraud_signals": {
+        "suspicious_mismatch": false
+      },
+      "overall_observations": {
+        "uncertainty_notes": []
+      }
+    },
+    "routing": {
+      "state_id": "ST-CASHBACK",
+      "action": "INSTANT_CASHBACK",
+      "cashback_amount": 599.9,
+      "severity": "Low",
+      "calculation": {
+        "item_price": 5999.0,
+        "multiplier_applied": 0.1
+      },
+      "justification": "Rufus determined this item is eligible for this return path."
+    }
+  }
+]

@@ -10,8 +10,8 @@ import traceback
 # Import the prompt templates
 from prompts import CATEGORY_PROMPTS
 
-# Load environment variables
-load_dotenv(dotenv_path="../.env")
+# Load environment variables with override=True so it ignores old cached terminal env vars
+load_dotenv(dotenv_path="../.env", override=True)
 
 app = FastAPI()
 
@@ -24,9 +24,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize AWS Bedrock client
+# Initialize AWS Bedrock client explicitly with the new keys
 try:
-    bedrock_client = boto3.client("bedrock-runtime", region_name=os.getenv("AWS_DEFAULT_REGION", "us-east-1"))
+    bedrock_client = boto3.client(
+        "bedrock-runtime", 
+        region_name=os.getenv("AWS_DEFAULT_REGION", "us-east-1"),
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
+    )
 except Exception as e:
     print(f"Failed to initialize boto3 client: {e}")
     bedrock_client = None
@@ -43,6 +48,11 @@ def get_image_format(filename: str) -> str:
     elif ext == "gif":
         return "gif"
     return "jpeg" # fallback
+
+@app.get("/health")
+def health_check():
+    key = os.getenv("AWS_ACCESS_KEY_ID", "")
+    return {"status": "ok", "key_prefix": key[:5]}
 
 @app.post("/api/grade")
 async def grade_item(
@@ -95,6 +105,29 @@ async def grade_item(
         # Prepare the content payload for Amazon Nova
         content_payload = []
         
+        # Bypass rules for categories that cannot have cosmetic cashback
+        if category == "Consumables":
+            return {
+                "analysis": {"bypass": "Consumables are strictly returned/refunded. No cosmetic cashback allowed."},
+                "routing": {
+                    "state_id": "ST-STANDARD",
+                    "action": "STANDARD_RETURN",
+                    "cashback_amount": 0.0,
+                    "severity": "None"
+                }
+            }
+        
+        if category == "Apparel" and reason in ["Size is too small/large", "Fit is not as expected", "Color/style does not match description"]:
+            return {
+                "analysis": {"bypass": "Apparel size/fit issues are strictly returned/refunded."},
+                "routing": {
+                    "state_id": "ST-STANDARD",
+                    "action": "STANDARD_RETURN",
+                    "cashback_amount": 0.0,
+                    "severity": "None"
+                }
+            }
+
         # Add all images to the payload
         for img in files:
             img_bytes = await img.read()
@@ -157,6 +190,7 @@ async def grade_item(
             routing_action = "STANDARD_RETURN"
             cashback_amount = 0.0
             max_severity = None
+            multiplier_used = 0.0
             
             product_id = parsed_json.get("product_identification", {})
             struct = parsed_json.get("structural_inspection", {})
@@ -182,30 +216,140 @@ async def grade_item(
                     elif sev.lower() == "medium":
                         max_severity = "Medium"
                 
-                multiplier = 0.10 # default 10% for Low
+                multiplier_used = 0.10 # default 10% for Low
                 if max_severity == "High":
-                    multiplier = 0.35
+                    multiplier_used = 0.35
                 elif max_severity == "Medium":
-                    multiplier = 0.20
+                    multiplier_used = 0.20
                     
-                cashback_amount = round(price * multiplier, 2)
+                cashback_amount = round(price * multiplier_used, 2)
             else:
                 # Pristine / Open Box
                 routing_action = "STANDARD_RETURN"
+                multiplier_used = 0.0
 
-            return {
+            ai_response = {
                 "analysis": parsed_json,
                 "routing": {
                     "state_id": routing_decision,
                     "action": routing_action,
                     "cashback_amount": cashback_amount,
-                    "severity": max_severity
+                    "severity": max_severity,
+                    "calculation": {
+                        "item_price": price,
+                        "multiplier_applied": multiplier_used
+                    },
+                    "justification": parsed_json.get("reasoning") or parsed_json.get("overall_observations", {}).get("analysis") or "Rufus determined this item is eligible for this return path."
                 }
             }
+            
+            # Log to telemetry
+            try:
+                import os
+                telemetry_path = os.path.join(os.path.dirname(__file__), "..", "database", "telemetry.json")
+                if os.path.exists(telemetry_path):
+                    with open(telemetry_path, "r") as f:
+                        data = json.load(f)
+                else:
+                    data = []
+                data.append(ai_response)
+                with open(telemetry_path, "w") as f:
+                    json.dump(data, f, indent=2)
+            except Exception as e:
+                print("Failed to write telemetry:", e)
+
+            return ai_response
+
         except json.JSONDecodeError:
             print("Failed to parse JSON. Raw response:", response_text)
             return {"error": "Invalid JSON from model", "raw_response": response_text}
             
     except Exception as e:
+        print(f"CRITICAL ERROR IN GRADE_ITEM: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/resale-verify")
+async def resale_verify(
+    files: List[UploadFile] = File(...),
+    product_name: str = Form(...),
+    original_price: float = Form(...),
+    age_days: int = Form(...),
+    declared_condition: str = Form(...),
+    functionality: str = Form(...),
+    warranty: str = Form(...),
+    packaging: str = Form(...),
+    missing_items: str = Form("")
+):
+    if not bedrock_client:
+        raise HTTPException(status_code=500, detail="AWS Bedrock client not initialized.")
+        
+    try:
+        from prompts import RESALE_PROMPTS
+        template = RESALE_PROMPTS.get("default", "")
+        
+        # Format the prompt
+        formatted_prompt = template.replace("{product_name}", product_name)
+        formatted_prompt = formatted_prompt.replace("{original_price}", str(original_price))
+        formatted_prompt = formatted_prompt.replace("{age_days}", str(age_days))
+        formatted_prompt = formatted_prompt.replace("{declared_condition}", declared_condition)
+        formatted_prompt = formatted_prompt.replace("{functionality}", functionality)
+        formatted_prompt = formatted_prompt.replace("{warranty}", warranty)
+        formatted_prompt = formatted_prompt.replace("{packaging}", packaging)
+        formatted_prompt = formatted_prompt.replace("{missing_items}", missing_items if missing_items else "None")
+        
+        content_payload = []
+        for img in files:
+            img_bytes = await img.read()
+            img_format = get_image_format(img.filename)
+            content_payload.append({
+                "image": {
+                    "format": img_format,
+                    "source": {"bytes": img_bytes}
+                }
+            })
+            
+        content_payload.append({"text": formatted_prompt})
+        
+        print(f"Calling Nova Pro for Resale Verification: {product_name}")
+        try:
+            response = bedrock_client.converse(
+                modelId="amazon.nova-pro-v1:0",
+                messages=[{"role": "user", "content": content_payload}]
+            )
+        except Exception as e:
+            print(f"Nova Pro failed: {e}. Falling back to Nova Lite...")
+            response = bedrock_client.converse(
+                modelId="us.amazon.nova-2-lite-v1:0",
+                messages=[{"role": "user", "content": content_payload}]
+            )
+            
+        response_text = response['output']['message']['content'][0]['text']
+        
+        # Parse JSON
+        clean_text = response_text.strip()
+        if clean_text.startswith("```json"):
+            clean_text = clean_text[7:]
+        if clean_text.endswith("```"):
+            clean_text = clean_text[:-3]
+        clean_text = clean_text.strip()
+            
+        parsed_json = json.loads(clean_text)
+        
+        multiplier = parsed_json.get("pricing_analysis", {}).get("final_multiplier_factor", 0.5)
+        recommended_price = round(original_price * float(multiplier), 2)
+        
+        return {
+            "analysis": parsed_json,
+            "recommended_price": recommended_price
+        }
+        
+    except json.JSONDecodeError:
+        print("Failed to parse JSON for resale verify.")
+        return {"error": "Invalid JSON from model"}
+    except Exception as e:
+        print(f"CRITICAL ERROR IN RESALE_VERIFY: {e}")
+        import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))

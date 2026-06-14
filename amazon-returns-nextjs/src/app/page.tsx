@@ -109,6 +109,23 @@ export default function Home() {
     return { eligible: true, reason: "Eligible till " + formatDate(endDate.toISOString()) };
   };
 
+  const getResaleEligibility = (order: any, product: any) => {
+    const nonResellableCategories = ["Consumables", "Medicine", "Hygiene", "Grocery", "Beauty"];
+    if (nonResellableCategories.includes(product.category) || product.compliance_flags.hygiene_restricted) {
+      return { eligible: false, reason: "Category not eligible for resale" };
+    }
+    
+    const orderDate = new Date(order.timeline.ordered_at);
+    const oneYearAgo = new Date(CURRENT_DATE);
+    oneYearAgo.setFullYear(CURRENT_DATE.getFullYear() - 1);
+    
+    if (orderDate < oneYearAgo) {
+      return { eligible: false, reason: "Item is older than 1 year" };
+    }
+    
+    return { eligible: true, reason: "Eligible for Amazon Resale" };
+  };
+
   const router = useRouter();
 
   const handleReturnAction = (orderId: string) => {
@@ -157,6 +174,7 @@ export default function Home() {
           if (!product) return null;
           
           const returnStatus = getReturnEligibility(order, product);
+          const resaleStatus = getResaleEligibility(order, product);
           
           return (
             <div key={orderId} className="amz-card">
@@ -235,6 +253,17 @@ export default function Home() {
                         Return or replace items
                       </button>
                     </div>
+                    
+                    {resaleStatus.eligible && (
+                      <div title={resaleStatus.reason}>
+                        <button 
+                          onClick={() => router.push(`/resale/${orderId}`)}
+                          className="w-full bg-[#dcfce7] border border-[#16a34a] py-1.5 shadow-sm text-[#166534] rounded-full hover:bg-[#bbf7d0] transition-colors font-bold text-[13px]"
+                        >
+                          List on Amazon Resale
+                        </button>
+                      </div>
+                    )}
                     
                     <button className="amz-btn-secondary py-1.5 shadow-sm text-[#0f1111] border-[#d5d9d9]">Share gift receipt</button>
                     <button className="amz-btn-secondary py-1.5 shadow-sm text-[#0f1111] border-[#d5d9d9]">Leave seller feedback</button>
@@ -364,6 +393,8 @@ export default function Home() {
           </div>
         </div>
       )}
+
+
 
     </div>
   );

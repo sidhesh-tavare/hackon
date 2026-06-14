@@ -5,7 +5,7 @@
       "brand": "Amazon Essentials",
       "category": "Apparel",
       "sub_category": "Footwear",
-      "primary_image_url": "https://m.media-amazon.com/images/I/41tOUNnIUGL._SY395_SX395_QL70_ML2_.jpg",
+      "primary_image_url": "https://m.media-amazon.com/images/I/71p01h6tX1L._AC_SY695_.jpg",
       "attributes": {
         "color": "Blue",
         "size": "8 US",
@@ -31,7 +31,7 @@
       "brand": "WaveMaster",
       "category": "Appliances",
       "sub_category": "Kitchen",
-      "primary_image_url": "https://m.media-amazon.com/images/I/61tKaKicD8L._AC_UY218_.jpg",
+      "primary_image_url": "https://m.media-amazon.com/images/I/81x%2BCk6kXvL._AC_SL1500_.jpg",
       "attributes": {
         "color": "Silver/Black",
         "material": "Stainless Steel",
@@ -58,7 +58,7 @@
       "brand": "SafeCam",
       "category": "Electronics",
       "sub_category": "Smart Home",
-      "primary_image_url": "https://m.media-amazon.com/images/G/31/apparel/rcxgs/tile._CB483369979_.gif",
+      "primary_image_url": "https://m.media-amazon.com/images/I/51rPq4T4tYL._AC_SL1000_.jpg",
       "attributes": {
         "color": "White",
         "resolution": "1080p HD",
@@ -85,7 +85,7 @@
       "brand": "EcoShield",
       "category": "Accessories",
       "sub_category": "Mobile Accessories",
-      "primary_image_url": "https://m.media-amazon.com/images/G/31/apparel/rcxgs/tile._CB483369979_.gif",
+      "primary_image_url": "https://m.media-amazon.com/images/I/81hOzzF0vLL._AC_SL1500_.jpg",
       "attributes": {
         "color": "Brown",
         "material": "Genuine Leather",
@@ -109,7 +109,8 @@
       "brand": "Optimum Nutrition",
       "category": "Consumables",
       "sub_category": "Sports Nutrition",
-      "primary_image_url": "https://m.media-amazon.com/images/G/31/apparel/rcxgs/tile._CB483369979_.gif",
+      "primary_image_url": "https://m.media-amazon.com/images/I/716uB7G7q4L._AC_SL1500_.jpg",
+      "attributes": {
         "flavor": "Double Rich Chocolate",
         "weight_class": "1kg Tub"
       },
