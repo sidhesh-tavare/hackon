@@ -1,0 +1,74 @@
+{
+  "orders": {
+    "ORD-1001": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "product_id": "shoe_123",
+      "product_name": "Amazon Essentials Women's Running Shoes",
+      "category": "apparel",
+      "retail_price_inr": 500,
+      "purchase_date": "2026-06-05",
+      "return_window_days": 30,
+      "delivery_pincode": "400001",
+      "delivery_city": "Mumbai",
+      "estimated_reverse_logistics_cost": 250,
+      "is_returnable_category": true
+    },
+    "ORD-1002": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "product_id": "micro_000",
+      "product_name": "WaveMaster 900W Countertop Microwave",
+      "category": "appliances",
+      "retail_price_inr": 6000,
+      "purchase_date": "2026-06-10",
+      "return_window_days": 10,
+      "delivery_pincode": "400001",
+      "delivery_city": "Mumbai",
+      "estimated_reverse_logistics_cost": 5000,
+      "is_returnable_category": true
+    },
+    "ORD-1003": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "product_id": "monitor_456",
+      "product_name": "SafeCam Video Baby Monitor",
+      "category": "electronics",
+      "retail_price_inr": 4500,
+      "purchase_date": "2026-04-10",
+      "return_window_days": 7,
+      "delivery_pincode": "400001",
+      "delivery_city": "Mumbai",
+      "estimated_reverse_logistics_cost": 400,
+      "is_returnable_category": true
+    },
+    "ORD-1004": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "product_id": "case_789",
+      "product_name": "EcoShield Leather Phone Case - iPhone 14",
+      "category": "accessories",
+      "retail_price_inr": 700,
+      "purchase_date": "2026-06-12",
+      "return_window_days": 10,
+      "delivery_pincode": "400001",
+      "delivery_city": "Mumbai",
+      "estimated_reverse_logistics_cost": 120,
+      "is_returnable_category": true
+    },
+    "ORD-1005": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "product_id": "whey_999",
+      "product_name": "Optimum Nutrition Whey Protein 1kg",
+      "category": "consumables",
+      "retail_price_inr": 3500,
+      "purchase_date": "2026-06-11",
+      "return_window_days": 0,
+      "delivery_pincode": "400001",
+      "delivery_city": "Mumbai",
+      "estimated_reverse_logistics_cost": 300,
+      "is_returnable_category": false
+    }
+  }
+}

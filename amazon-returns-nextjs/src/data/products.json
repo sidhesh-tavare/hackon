@@ -1,0 +1,133 @@
+
+{
+  "catalog": {
+    "ASIN-B08F2XQ99P": {
+      "title": "Amazon Essentials Women's Running Shoes",
+      "brand": "Amazon Essentials",
+      "category": "Apparel",
+      "sub_category": "Footwear",
+      "primary_image_url": "https://m.media-amazon.com/images/I/mock-shoe-blue.jpg",
+      "attributes": {
+        "color": "Blue",
+        "size": "8 US",
+        "material": "Synthetic Mesh"
+      },
+      "whats_in_the_box": [
+        "Left Shoe",
+        "Right Shoe",
+        "Original Shoebox"
+      ],
+      "physical_specs": {
+        "item_weight_grams": 600,
+        "package_dimensions_cm": { "length": 30, "width": 20, "height": 10 }
+      },
+      "compliance_flags": {
+        "is_returnable": true,
+        "is_hazmat": false,
+        "hygiene_restricted": false
+      }
+    },
+    "ASIN-B07X3XF62Q": {
+      "title": "WaveMaster 900W Countertop Microwave",
+      "brand": "WaveMaster",
+      "category": "Appliances",
+      "sub_category": "Kitchen",
+      "primary_image_url": "https://m.media-amazon.com/images/I/mock-microwave-silver.jpg",
+      "attributes": {
+        "color": "Silver/Black",
+        "material": "Stainless Steel",
+        "wattage": "900W"
+      },
+      "whats_in_the_box": [
+        "Microwave Unit",
+        "Glass Turntable Plate",
+        "Roller Ring",
+        "User Manual"
+      ],
+      "physical_specs": {
+        "item_weight_grams": 12500,
+        "package_dimensions_cm": { "length": 50, "width": 40, "height": 30 }
+      },
+      "compliance_flags": {
+        "is_returnable": true,
+        "is_hazmat": false,
+        "hygiene_restricted": false
+      }
+    },
+    "ASIN-B09Y2XYZ12": {
+      "title": "SafeCam Video Baby Monitor",
+      "brand": "SafeCam",
+      "category": "Electronics",
+      "sub_category": "Smart Home",
+      "primary_image_url": "https://m.media-amazon.com/images/I/mock-monitor-white.jpg",
+      "attributes": {
+        "color": "White",
+        "resolution": "1080p HD",
+        "connectivity": "Wi-Fi"
+      },
+      "whats_in_the_box": [
+        "Camera Unit",
+        "Display Monitor",
+        "2x Power Adapters",
+        "Mounting Bracket"
+      ],
+      "physical_specs": {
+        "item_weight_grams": 800,
+        "package_dimensions_cm": { "length": 20, "width": 15, "height": 10 }
+      },
+      "compliance_flags": {
+        "is_returnable": true,
+        "is_hazmat": false,
+        "hygiene_restricted": false
+      }
+    },
+    "ASIN-B08ABC1234": {
+      "title": "EcoShield Leather Phone Case - iPhone 14",
+      "brand": "EcoShield",
+      "category": "Accessories",
+      "sub_category": "Mobile Accessories",
+      "primary_image_url": "https://m.media-amazon.com/images/I/mock-case-brown.jpg",
+      "attributes": {
+        "color": "Brown",
+        "material": "Genuine Leather",
+        "compatibility": "iPhone 14"
+      },
+      "whats_in_the_box": [
+        "Leather Phone Case"
+      ],
+      "physical_specs": {
+        "item_weight_grams": 100,
+        "package_dimensions_cm": { "length": 15, "width": 8, "height": 2 }
+      },
+      "compliance_flags": {
+        "is_returnable": true,
+        "is_hazmat": false,
+        "hygiene_restricted": false
+      }
+    },
+    "ASIN-B01N7O9W5I": {
+      "title": "Optimum Nutrition Gold Standard Whey Protein",
+      "brand": "Optimum Nutrition",
+      "category": "Consumables",
+      "sub_category": "Sports Nutrition",
+      "primary_image_url": "https://m.media-amazon.com/images/I/mock-whey-black.jpg",
+      "attributes": {
+        "flavor": "Double Rich Chocolate",
+        "weight_class": "1kg Tub"
+      },
+      "whats_in_the_box": [
+        "Factory Sealed Tub",
+        "Measuring Scoop (Inside)"
+      ],
+      "physical_specs": {
+        "item_weight_grams": 1100,
+        "package_dimensions_cm": { "length": 25, "width": 15, "height": 15 }
+      },
+      "compliance_flags": {
+        "is_returnable": false,
+        "is_hazmat": false,
+        "hygiene_restricted": true
+      }
+    }
+  }
+}

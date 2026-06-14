@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Orders | Amazon Returns Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">📦</span>
+                <h1>Returns & Orders</h1>
+            </div>
+            <div class="user-profile">
+                <span>Sam's Account</span>
+                <div class="avatar">S</div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="page-title">
+                <h2>Your Orders</h2>
+                <p>View your recent orders and start a return process.</p>
+            </div>
+
+            <div id="orders-container" class="orders-grid">
+                <!-- Orders will be dynamically injected here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Return Modal -->
+    <div id="return-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal">&times;</button>
+            <div id="modal-body">
+                <!-- Modal content injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

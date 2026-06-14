@@ -1,0 +1,89 @@
+{
+  "orders": {
+    "ORD-1001": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "asin": "ASIN-B08F2XQ99P",
+      "purchase_price_inr": 499,
+      "order_status": "DELIVERED",
+      "timeline": {
+        "ordered_at": "2026-06-01T09:15:00Z",
+        "delivered_at": "2026-06-05T14:30:00Z",
+        "return_window_ends_at": "2026-07-05T23:59:59Z"
+      },
+      "shipping_details": {
+        "delivery_pincode": "400001",
+        "delivery_city": "Mumbai",
+        "origin_fulfillment_center": "BOM4"
+      }
+    },
+    "ORD-1002": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "asin": "ASIN-B07X3XF62Q",
+      "purchase_price_inr": 5999,
+      "order_status": "DELIVERED",
+      "timeline": {
+        "ordered_at": "2026-06-03T18:45:00Z",
+        "delivered_at": "2026-06-10T11:20:00Z",
+        "return_window_ends_at": "2026-06-20T23:59:59Z"
+      },
+      "shipping_details": {
+        "delivery_pincode": "400001",
+        "delivery_city": "Mumbai",
+        "origin_fulfillment_center": "BOM1"
+      }
+    },
+    "ORD-1003": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "asin": "ASIN-B09Y2XYZ12",
+      "purchase_price_inr": 4500,
+      "order_status": "DELIVERED",
+      "timeline": {
+        "ordered_at": "2026-04-05T10:00:00Z",
+        "delivered_at": "2026-04-10T09:15:00Z",
+        "return_window_ends_at": "2026-04-17T23:59:59Z"
+      },
+      "shipping_details": {
+        "delivery_pincode": "400001",
+        "delivery_city": "Mumbai",
+        "origin_fulfillment_center": "DEL3"
+      }
+    },
+    "ORD-1004": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "asin": "ASIN-B08ABC1234",
+      "purchase_price_inr": 650,
+      "order_status": "DELIVERED",
+      "timeline": {
+        "ordered_at": "2026-06-10T14:22:00Z",
+        "delivered_at": "2026-06-12T16:45:00Z",
+        "return_window_ends_at": "2026-06-22T23:59:59Z"
+      },
+      "shipping_details": {
+        "delivery_pincode": "400001",
+        "delivery_city": "Mumbai",
+        "origin_fulfillment_center": "BOM4"
+      }
+    },
+    "ORD-1005": {
+      "customer_id": "CUST-SAM-001",
+      "customer_name": "Sam",
+      "asin": "ASIN-B01N7O9W5I",
+      "purchase_price_inr": 3499,
+      "order_status": "DELIVERED",
+      "timeline": {
+        "ordered_at": "2026-06-08T08:30:00Z",
+        "delivered_at": "2026-06-11T13:10:00Z",
+        "return_window_ends_at": "2026-06-11T23:59:59Z"
+      },
+      "shipping_details": {
+        "delivery_pincode": "400001",
+        "delivery_city": "Mumbai",
+        "origin_fulfillment_center": "BLR5"
+      }
+    }
+  }
+}
