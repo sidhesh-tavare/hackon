@@ -46,13 +46,15 @@ def get_image_format(filename: str) -> str:
 
 @app.post("/api/grade")
 async def grade_item(
-    images: List[UploadFile] = File(...),
+    files: List[UploadFile] = File(...),
     product_name: str = Form(...),
     category: str = Form(...),
-    sub_category: str = Form(""),
-    expected_color: str = Form("Unknown"),
-    reason: Optional[str] = Form(None),
-    customer_notes: Optional[str] = Form(None)
+    sub_category: str = Form(...),
+    expected_color: str = Form(...),
+    reason: str = Form(...),
+    sub_reason: str = Form(""),
+    customer_notes: str = Form(""),
+    price: float = Form(0.0)
 ):
     if not bedrock_client:
         raise HTTPException(status_code=500, detail="AWS Bedrock client not initialized. Check credentials.")
@@ -80,18 +82,21 @@ async def grade_item(
         formatted_prompt = formatted_prompt.replace("{subcategory}", sub_category)
         formatted_prompt = formatted_prompt.replace("{expected_color}", expected_color)
         
-        # Add the reason if provided (for returns)
-        if reason:
-            formatted_prompt += f"\n\nUSER REPORTED ISSUE: {reason}"
-            
+        # Construct the full customer reason combining dropdown reason, sub-reason, and notes
+        full_reason_parts = [reason]
+        if sub_reason:
+            full_reason_parts.append(sub_reason)
         if customer_notes:
-            formatted_prompt += f"\n\nCUSTOMER NOTES: {customer_notes}"
+            full_reason_parts.append(f"Notes: {customer_notes}")
+        full_customer_reason = " | ".join(full_reason_parts)
+            
+        formatted_prompt = formatted_prompt.replace("{customer_reason}", full_customer_reason)
 
         # Prepare the content payload for Amazon Nova
         content_payload = []
         
         # Add all images to the payload
-        for img in images:
+        for img in files:
             img_bytes = await img.read()
             img_format = get_image_format(img.filename)
             
@@ -146,7 +151,57 @@ async def grade_item(
             clean_text = clean_text.strip()
                 
             parsed_json = json.loads(clean_text)
-            return parsed_json
+            
+            # Intelligent Routing Engine Logic (Simplified: 2 Outcomes)
+            routing_decision = "ST-STANDARD"
+            routing_action = "STANDARD_RETURN"
+            cashback_amount = 0.0
+            max_severity = None
+            
+            product_id = parsed_json.get("product_identification", {})
+            struct = parsed_json.get("structural_inspection", {})
+            cosmetic = parsed_json.get("cosmetic_inspection", {})
+            
+            if product_id.get("appears_correct_product") == False:
+                routing_decision = "ST-MISMATCH"
+                routing_action = "ITEM_MISMATCH"
+            elif struct.get("structural_damage_detected") == True:
+                routing_action = "STANDARD_RETURN"
+            elif cosmetic.get("cosmetic_damage_detected") == True:
+                routing_decision = "ST-CASHBACK"
+                routing_action = "INSTANT_CASHBACK"
+                
+                # Calculate dynamic cashback amount based on highest severity
+                issues = cosmetic.get("issues", [])
+                max_severity = "Low"
+                for issue in issues:
+                    sev = issue.get("severity", "Low")
+                    if sev.lower() == "high":
+                        max_severity = "High"
+                        break
+                    elif sev.lower() == "medium":
+                        max_severity = "Medium"
+                
+                multiplier = 0.10 # default 10% for Low
+                if max_severity == "High":
+                    multiplier = 0.35
+                elif max_severity == "Medium":
+                    multiplier = 0.20
+                    
+                cashback_amount = round(price * multiplier, 2)
+            else:
+                # Pristine / Open Box
+                routing_action = "STANDARD_RETURN"
+
+            return {
+                "analysis": parsed_json,
+                "routing": {
+                    "state_id": routing_decision,
+                    "action": routing_action,
+                    "cashback_amount": cashback_amount,
+                    "severity": max_severity
+                }
+            }
         except json.JSONDecodeError:
             print("Failed to parse JSON. Raw response:", response_text)
             return {"error": "Invalid JSON from model", "raw_response": response_text}

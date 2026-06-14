@@ -5,7 +5,7 @@
       "brand": "Amazon Essentials",
       "category": "Apparel",
       "sub_category": "Footwear",
-      "primary_image_url": "https://m.media-amazon.com/images/I/mock-shoe-blue.jpg",
+      "primary_image_url": "https://m.media-amazon.com/images/I/41tOUNnIUGL._SY395_SX395_QL70_ML2_.jpg",
       "attributes": {
         "color": "Blue",
         "size": "8 US",
@@ -31,7 +31,7 @@
       "brand": "WaveMaster",
       "category": "Appliances",
       "sub_category": "Kitchen",
-      "primary_image_url": "https://m.media-amazon.com/images/I/mock-microwave-silver.jpg",
+      "primary_image_url": "https://m.media-amazon.com/images/I/61tKaKicD8L._AC_UY218_.jpg",
       "attributes": {
         "color": "Silver/Black",
         "material": "Stainless Steel",
@@ -58,7 +58,7 @@
       "brand": "SafeCam",
       "category": "Electronics",
       "sub_category": "Smart Home",
-      "primary_image_url": "https://m.media-amazon.com/images/I/mock-monitor-white.jpg",
+      "primary_image_url": "https://m.media-amazon.com/images/G/31/apparel/rcxgs/tile._CB483369979_.gif",
       "attributes": {
         "color": "White",
         "resolution": "1080p HD",
@@ -85,7 +85,7 @@
       "brand": "EcoShield",
       "category": "Accessories",
       "sub_category": "Mobile Accessories",
-      "primary_image_url": "https://m.media-amazon.com/images/I/mock-case-brown.jpg",
+      "primary_image_url": "https://m.media-amazon.com/images/G/31/apparel/rcxgs/tile._CB483369979_.gif",
       "attributes": {
         "color": "Brown",
         "material": "Genuine Leather",
@@ -109,8 +109,7 @@
       "brand": "Optimum Nutrition",
       "category": "Consumables",
       "sub_category": "Sports Nutrition",
-      "primary_image_url": "https://m.media-amazon.com/images/I/mock-whey-black.jpg",
-      "attributes": {
+      "primary_image_url": "https://m.media-amazon.com/images/G/31/apparel/rcxgs/tile._CB483369979_.gif",
         "flavor": "Double Rich Chocolate",
         "weight_class": "1kg Tub"
       },

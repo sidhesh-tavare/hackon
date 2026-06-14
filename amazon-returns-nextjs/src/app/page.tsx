@@ -161,25 +161,25 @@ export default function Home() {
           return (
             <div key={orderId} className="amz-card">
               <div className="amz-card-header">
-                <div className="flex gap-8">
+                <div className="flex gap-4 md:gap-8 text-[#565959]">
                   <div>
-                    <div>Order Placed</div>
-                    <div className="text-[#0f1111]">{formatDate(order.timeline.ordered_at)}</div>
+                    <div className="uppercase text-[11px] mb-1">Order Placed</div>
+                    <div className="text-[#0f1111] text-[13px]">{formatDate(order.timeline.ordered_at)}</div>
                   </div>
                   <div>
-                    <div>Total</div>
-                    <div className="text-[#0f1111]">₹{order.purchase_price_inr.toLocaleString()}</div>
+                    <div className="uppercase text-[11px] mb-1">Total</div>
+                    <div className="text-[#0f1111] text-[13px]">₹{order.purchase_price_inr.toLocaleString()}</div>
                   </div>
                   <div>
-                    <div>Ship To</div>
-                    <div className="text-[#007185] hover:text-[#c45500] hover:underline cursor-pointer">
-                      {order.shipping_details.delivery_city} <span className="text-xs">▼</span>
+                    <div className="uppercase text-[11px] mb-1">Ship To</div>
+                    <div className="text-[#007185] text-[13px] hover:text-[#c45500] hover:underline cursor-pointer">
+                      {order.shipping_details.delivery_city} <span className="text-[10px]">▼</span>
                     </div>
                   </div>
                 </div>
-                <div className="text-right mt-2 md:mt-0">
-                  <div>Order # {orderId}</div>
-                  <div className="flex gap-2 justify-end text-[#007185]">
+                <div className="text-right mt-2 md:mt-0 text-[#565959]">
+                  <div className="uppercase text-[11px] mb-1">Order # {orderId.replace('ORD-', '404-5964293-')}</div>
+                  <div className="flex gap-2 justify-end text-[#007185] text-[13px]">
                     <span className="hover:text-[#c45500] hover:underline cursor-pointer">View order details</span>
                     <span className="text-[#d5d9d9]">|</span>
                     <span className="hover:text-[#c45500] hover:underline cursor-pointer">Invoice ▼</span>
@@ -188,52 +188,59 @@ export default function Home() {
               </div>
 
               <div className="amz-card-body">
-                <div className="w-24 h-24 bg-gray-100 rounded flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-200">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={product.primary_image_url} alt={product.title} className="w-full h-full object-contain p-2" />
-                </div>
-                
-                <div className="flex-grow">
-                  <h3 className="font-bold text-[#007185] hover:text-[#c45500] hover:underline cursor-pointer mb-2 text-base line-clamp-2">
-                    {product.title}
-                  </h3>
+                <div className="w-full flex-grow flex flex-col md:flex-row gap-4">
                   
-                  {returnStatus.eligible && (
-                    <p className="text-sm text-[#565959] mb-3">Return or replace item: {returnStatus.reason}</p>
-                  )}
-                  
-                  <button className="amz-btn-secondary w-auto inline-block text-xs py-1 px-4 mt-2">
-                    View your item
-                  </button>
-                </div>
+                  {/* Left content: Status, Image, Title */}
+                  <div className="w-full md:w-auto flex-grow">
+                    <div className="font-bold text-[#0f1111] text-base mb-1">
+                       Delivered {formatDate(order.timeline.delivered_at).split(' ').slice(0,2).join(' ')}
+                    </div>
+                    <div className="text-[13px] text-[#0f1111] mb-3">
+                       Package was handed to resident
+                    </div>
+                    
+                    <div className="flex gap-4">
+                      <div className="w-16 h-20 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={product.primary_image_url} alt={product.title} className="w-full h-full object-contain" />
+                      </div>
+                      
+                      <div>
+                        <h3 className="font-medium text-[#007185] hover:text-[#c45500] hover:underline cursor-pointer mb-1 text-[13px] line-clamp-2">
+                          {product.title}
+                        </h3>
+                        
+                        {returnStatus.eligible && (
+                          <p className="text-xs text-[#0f1111] mt-1 mb-2">Replace item: <span className="text-[#565959]">{returnStatus.reason}</span></p>
+                        )}
+                        
+                        <button className="amz-btn-secondary w-auto inline-block text-[11px] py-1 px-3 mt-1 font-normal text-[#0f1111] rounded-full border-[#d5d9d9]">
+                          View your item
+                        </button>
+                      </div>
+                    </div>
+                  </div>
 
-                <div className="w-full md:w-64 flex flex-col gap-2 flex-shrink-0">
-                  <button className="amz-btn-primary">Track package</button>
-                  
-                  {/* Return Button with Tooltip if disabled */}
-                  <div title={!returnStatus.eligible ? returnStatus.reason : undefined}>
-                    <button 
-                      onClick={() => handleReturnAction(orderId)}
-                      disabled={!returnStatus.eligible}
-                      className="amz-btn-secondary"
-                    >
-                      Return or replace item
-                    </button>
+                  {/* Right content: Buttons */}
+                  <div className="w-full md:w-[250px] flex flex-col gap-2 flex-shrink-0 text-[13px]">
+                    <button className="amz-btn-secondary py-1.5 shadow-sm text-[#0f1111] border-[#d5d9d9]">Track package</button>
+                    
+                    {/* Return Button with Tooltip if disabled */}
+                    <div title={!returnStatus.eligible ? returnStatus.reason : undefined}>
+                      <button 
+                        onClick={() => handleReturnAction(orderId)}
+                        disabled={!returnStatus.eligible}
+                        className="amz-btn-secondary py-1.5 shadow-sm text-[#0f1111] border-[#d5d9d9]"
+                      >
+                        Return or replace items
+                      </button>
+                    </div>
+                    
+                    <button className="amz-btn-secondary py-1.5 shadow-sm text-[#0f1111] border-[#d5d9d9]">Share gift receipt</button>
+                    <button className="amz-btn-secondary py-1.5 shadow-sm text-[#0f1111] border-[#d5d9d9]">Leave seller feedback</button>
+                    <button className="amz-btn-secondary py-1.5 shadow-sm text-[#0f1111] border-[#d5d9d9]">Leave delivery feedback</button>
+                    <button className="amz-btn-secondary py-1.5 shadow-sm text-[#0f1111] border-[#d5d9d9]">Write a product review</button>
                   </div>
-                  
-                  {/* Second Chance Resale Button - Shown when return is available OR window is closed/not returnable */}
-                  <div title={!product.compliance_flags.is_returnable ? "Category not eligible for return or resale" : undefined}>
-                    <button 
-                      onClick={() => setRufusChatOrderId(orderId)}
-                      disabled={!product.compliance_flags.is_returnable}
-                      className={`amz-btn-secondary border-[#febd69] bg-[#fff9ed] flex items-center justify-center gap-2 ${!product.compliance_flags.is_returnable ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#fcf0d9]'}`}
-                    >
-                      <Image src="/images/rufus.jpg" alt="Rufus" width={16} height={16} className="rounded-full" />
-                      <span className="text-[#b12704] font-bold">Resale 2nd Chance</span>
-                    </button>
-                  </div>
-                  
-                  <button className="amz-btn-secondary">Write a product review</button>
                 </div>
               </div>
             </div>

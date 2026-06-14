@@ -7,9 +7,11 @@ CATEGORY_PROMPTS = {
     Category: {{category}}
     Subcategory: {{subcategory}}
     Expected Color/Variant: {{expected_color}}
+    Customer Reported Reason for Return: {{customer_reason}}
     
     CRITICAL INSTRUCTIONS:
     - ONLY report what is directly visible in the image.
+    - Evaluate the 'Customer Reported Reason' against the visual evidence. Do not blindly trust the customer; rely ONLY on what you can see.
     - Never assign grades (A/B/C) or determine resale viability.
     - Output valid JSON only.
     
@@ -27,6 +29,10 @@ CATEGORY_PROMPTS = {
       "product_identification": {{ "appears_correct_product": true }},
       "variant_verification": {{ "expected_color": "{{expected_color}}", "detected_color": "", "color_match": true }},
       "branding": {{ "brand_logo_visible": true }},
+      "customer_claim_verification": {{
+        "claim_visually_supported": true,
+        "analysis": "String (Brief 1-sentence explanation if the visual evidence matches the customer reason)"
+      }},
       "cosmetic_inspection": {{
         "cosmetic_damage_detected": false,
         "issues": [ {{ "area": "String", "issue": "String", "severity": "Low | Medium | High" }} ]
@@ -49,9 +55,11 @@ CATEGORY_PROMPTS = {
     Category: {{category}}
     Subcategory: {{subcategory}}
     Expected Color/Variant: {{expected_color}}
+    Customer Reported Reason for Return: {{customer_reason}}
     
     CRITICAL INSTRUCTIONS:
     - ONLY report what is directly visible in the image.
+    - Evaluate the 'Customer Reported Reason' against the visual evidence. Do not blindly trust the customer; rely ONLY on what you can see.
     - Never assign grades (A/B/C) or determine resale viability.
     - Output valid JSON only.
     
@@ -69,6 +77,10 @@ CATEGORY_PROMPTS = {
       "product_identification": {{ "appears_correct_product": true }},
       "variant_verification": {{ "expected_color": "{{expected_color}}", "detected_color": "", "color_match": true }},
       "branding": {{ "brand_logo_visible": true }},
+      "customer_claim_verification": {{
+        "claim_visually_supported": true,
+        "analysis": "String (Brief 1-sentence explanation if the visual evidence matches the customer reason)"
+      }},
       "cosmetic_inspection": {{
         "cosmetic_damage_detected": false,
         "issues": [ {{ "area": "String", "issue": "String", "severity": "Low | Medium | High" }} ]
@@ -91,9 +103,11 @@ CATEGORY_PROMPTS = {
     Category: {{category}}
     Subcategory: {{subcategory}}
     Expected Color/Variant: {{expected_color}}
+    Customer Reported Reason for Return: {{customer_reason}}
     
     CRITICAL INSTRUCTIONS:
     - ONLY report what is directly visible in the image.
+    - Evaluate the 'Customer Reported Reason' against the visual evidence. Do not blindly trust the customer; rely ONLY on what you can see.
     - Never assign grades (A/B/C) or determine resale viability.
     - Output valid JSON only.
     
@@ -111,6 +125,10 @@ CATEGORY_PROMPTS = {
       "product_identification": {{ "appears_correct_product": true }},
       "variant_verification": {{ "expected_color": "{{expected_color}}", "detected_color": "", "color_match": true }},
       "branding": {{ "brand_logo_visible": true }},
+      "customer_claim_verification": {{
+        "claim_visually_supported": true,
+        "analysis": "String (Brief 1-sentence explanation if the visual evidence matches the customer reason)"
+      }},
       "cosmetic_inspection": {{
         "cosmetic_damage_detected": false,
         "issues": [ {{ "area": "String", "issue": "String", "severity": "Low | Medium | High" }} ]
@@ -133,9 +151,11 @@ CATEGORY_PROMPTS = {
     Category: {{category}}
     Subcategory: {{subcategory}}
     Expected Color/Variant: {{expected_color}}
+    Customer Reported Reason for Return: {{customer_reason}}
     
     CRITICAL INSTRUCTIONS:
     - ONLY report what is directly visible in the image.
+    - Evaluate the 'Customer Reported Reason' against the visual evidence. Do not blindly trust the customer; rely ONLY on what you can see.
     - Never assign grades (A/B/C) or determine resale viability.
     - Output valid JSON only.
     
@@ -153,6 +173,10 @@ CATEGORY_PROMPTS = {
       "product_identification": {{ "appears_correct_product": true }},
       "variant_verification": {{ "expected_color": "{{expected_color}}", "detected_color": "", "color_match": true }},
       "branding": {{ "brand_logo_visible": true }},
+      "customer_claim_verification": {{
+        "claim_visually_supported": true,
+        "analysis": "String (Brief 1-sentence explanation if the visual evidence matches the customer reason)"
+      }},
       "cosmetic_inspection": {{
         "cosmetic_damage_detected": false,
         "issues": [ {{ "area": "String", "issue": "String", "severity": "Low | Medium | High" }} ]
